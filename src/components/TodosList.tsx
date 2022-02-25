@@ -1,4 +1,4 @@
-import { TODO } from "../customTypes";
+import { TODO } from "../utils/customTypes";
 import Todo from "./Todo";
 
 interface props{
