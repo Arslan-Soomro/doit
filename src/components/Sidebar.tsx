@@ -14,7 +14,10 @@ const Sidebar = () => {
         <SidebarItem name="Study" color="#195492" />
         <SidebarItem name="Work" color="#523491"  />
       </div>
+
+      <button className=" my-4 p-2 rounded-lg w-full border border-pclr-500 text-pclr-500 hover:text-white hover:bg-pclr-500 active:bg-pclr-600">Add Board</button>
     </div>
+    
   </div>);
 };
 

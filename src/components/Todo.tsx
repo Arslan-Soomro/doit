@@ -7,14 +7,10 @@ import {
   TrashIcon,
 } from "@heroicons/react/outline";
 import { useState } from "react";
+import { TODO } from "../customTypes";
 import Tooltip from "./Tooltip";
 
-interface props {
-  done?: boolean;
-  text: string;
-}
-
-const Todo = ({ done, text }: props) => {
+const Todo = ({ done, text }: TODO) => {
   //done prop is used to set default state and as well as pass new state to ancestor
 
   const [isChecked, setIsChecked] = useState(done ? true : false);
