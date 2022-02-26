@@ -8,8 +8,9 @@ const MiniTodo = ({ text, done } : {text: string, done: boolean}) => {
     const updateTodoState = useStore((state) => state.updateTodoState);
 
     const toggler = () => {
-        setIsDone(!isDone);
-        updateTodoState(text, isDone);
+        const newState = !isDone;
+        setIsDone(newState);
+        updateTodoState(text, newState);
     }
 
     return(

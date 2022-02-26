@@ -42,39 +42,46 @@ export const useStore = create<STORE>((set, get) => ({
       color: 'purple',
     }
   ],
+
   highlight: "set a daily highlight",
   currentBoard: initialBoard,
+
   addTodo: () => {
     set((state) => ({ todos : [...state.todos, {...defaultTodo, attachedBoard: get().currentBoard}]}));
   },
+
   updateTodoText: (prevText, newText) => {
-    let tempTodos = get().todos;
-    const editTodoInd = tempTodos.findIndex((item) => item.text == prevText);
-    if(editTodoInd != -1){
-      tempTodos[editTodoInd].text = newText;
-      set((state) => ({todos: tempTodos}));
-    }
+
+    set((state) => ({
+      todos: state.todos.map((item) => (item.text == prevText ? {...item, text: newText} : item))
+    }));
+
   },
+
   updateTodoState: (prevText, newState) => {
-    let tempTodos = get().todos;
-    const editTodoInd = tempTodos.findIndex((item) => item.text == prevText);
-    if(editTodoInd != -1){
-      tempTodos[editTodoInd].done = newState;
-      set((state) => ({todos: tempTodos}));
-    }
+
+    set((state) => ({
+      todos: state.todos.map((item) => (item.text == prevText ? {...item, done: newState} : item))
+    }));
+    
   },
+
   deleteTodo: (text) => {
     set((state) => ({ todos : state.todos.filter((item) => item.text != text)}));
   },
+
   updateHighlight: (text) => {
     set(() => ({highlight: text}));
   },
+
   addBoard: (newBoard) => {
     set((state) => ({boards: [...state.boards, newBoard]}))
   },
+
   switchBoard: (toBoard) => {
     set(() => ({currentBoard: toBoard}));
   },
+
   deleteBoard: (name) => {
     //Delets Board as well as attached todos, and switches to inbox board
     set((state) => ({
@@ -82,5 +89,6 @@ export const useStore = create<STORE>((set, get) => ({
       todos: state.todos.filter((item) => item.attachedBoard.name != name),
       currentBoard: state.boards[0],
     }));
+
   }
 }));
