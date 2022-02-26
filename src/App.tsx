@@ -40,15 +40,14 @@ function App() {
               isSideOpen ? "left-0 top-0" : "-left-full"
             }`}
           >
-            <Sidebar />
+            <Sidebar setBoardOpen={setIsBoardOpen} />
           </div>
           <div className="flex-1 flex h-full w-full flex-col">
             <div className="p-4 h-[180px]">
               <Header />
             </div>
             <div className="flex-1 py-4 overflow-y-auto">
-              {/* FIXME Something needs to done here, maybe implement react router */}
-              <BoardContainer />  <ListContainer />
+              {isBoardOpen ? <BoardContainer /> : <ListContainer />}
             </div>
           </div>
         </div>

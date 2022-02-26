@@ -5,13 +5,15 @@ import { useStore } from "./store";
 
 interface props extends BOARD {
   disableDel: boolean;
+  btnClickHandler: Function
 }
 
-const SidebarItem = ({ name, color, disableDel }: props) => {
+const SidebarItem = ({ name, color, disableDel, btnClickHandler }: props) => {
   const switchBoard = useStore((state) => state.switchBoard);
   const deleteBoard = useStore((state) => state.deleteBoard);
 
   const clickHandler = () => {
+    btnClickHandler();
     switchBoard({ name, color });
   };
 
