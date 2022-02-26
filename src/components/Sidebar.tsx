@@ -23,11 +23,13 @@ const Sidebar = () => {
           </h4>
         </div>
         <div className="px-4">
-          <SidebarItem name="Boards" />
+          <button className="p-3 text-left text-nclr-700 text-lg hover:bg-nclr-100 active:bg-nclr-200 w-full rounded-lg">
+            Boards
+          </button>
 
           <div className="ml-4 mt-1 border-l pl-1">
             {boards.map((item, ind) => (
-              <SidebarItem key={ind} name={item.name} color={item.color} />
+              <SidebarItem key={ind} name={item.name} color={item.color} disableDel={ind == 0} />
             ))}
           </div>
 

@@ -1,7 +1,7 @@
 
 export type BOARD = {
     name: string;
-    color?: string;
+    color: string;
 }
 
 export type TODO = {
@@ -20,4 +20,5 @@ export type STORE = {
     deleteTodo: (text: string) => void;
     addBoard: ({name, color} : BOARD) => void;
     updateHighlight: (text: string) => void;
+    deleteBoard: (name: string) => void;
 }

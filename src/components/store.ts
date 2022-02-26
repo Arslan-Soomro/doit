@@ -3,8 +3,8 @@ import { STORE, TODO } from "../utils/customTypes";
 
 const initialBoard = {
   //This one should be here by default, and at 0th index
-  name: 'All',
-  color: 'gray',
+  name: 'Inbox',
+  color: '#1D4ED8',
 };
 
 const defaultTodo: TODO = {
@@ -58,5 +58,8 @@ export const useStore = create<STORE>((set, get) => ({
   },
   switchBoard: (toBoard) => {
     set(() => ({currentBoard: toBoard}));
+  },
+  deleteBoard: (name) => {
+    set((state) => ({boards: state.boards.filter((item) => item.name != name)}));
   }
 }));
