@@ -50,6 +50,10 @@ export const useStore = create<STORE>((set, get) => ({
     set((state) => ({ todos : [...state.todos, {...defaultTodo, attachedBoard: get().currentBoard}]}));
   },
 
+  getTodoByText: (text) => {
+    return (get().todos.find((item) => item.text === text));
+  },
+
   updateTodoText: (prevText, newText) => {
 
     set((state) => ({

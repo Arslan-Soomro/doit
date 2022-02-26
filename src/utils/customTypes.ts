@@ -17,6 +17,7 @@ export type STORE = {
     currentBoard: BOARD;
     switchBoard: (toBoard: BOARD) => void;
     addTodo: () => void;
+    getTodoByText: (text: string) => TODO | undefined;
     updateTodoText: (prevtext: string, newText: string) => void;
     updateTodoState: (prevtext: string, newState: boolean) => void;
     deleteTodo: (text: string) => void;

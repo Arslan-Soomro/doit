@@ -19,7 +19,7 @@ function App() {
   //TODO app is not responsive
 
   const [isSideOpen, setIsSideOpen] = useState(false);
-  const [isBoardsOpen, setIsBoardsOpen] = useState(true);
+  const [isBoardOpen, setIsBoardOpen] = useState(true);
 
   return (
     <>

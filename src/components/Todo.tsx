@@ -11,8 +11,9 @@ import { TODO } from "../utils/customTypes";
 import { useStore } from "./store";
 import Tooltip from "./Tooltip";
 
+
 const Todo = ({ done, text, attachedBoard }: TODO) => {
-  //done prop is used to set default state and as well as pass new state to ancestor
+  //TODO done prop is no longer needed, safely remove it.
 
   const updateTodoText = useStore((state) => state.updateTodoText);
   const updateTodoState = useStore((state) => state.updateTodoState);
@@ -20,7 +21,9 @@ const Todo = ({ done, text, attachedBoard }: TODO) => {
   const updateHighlightHandler = useStore((state) => state.updateHighlight);
   
 
-  const [isChecked, setIsChecked] = useState(done ? true : false); //checked if todo is done otherwise unchecked
+  //const [isChecked, setIsChecked] = useState(done ? true : false); //checked if todo is done otherwise unchecked
+  const getInfo = useStore((state) => state.getTodoByText);
+  const isChecked = getInfo(text)?.done;
   const [isExpanded, setIsExpanded] = useState(false); //For mobile view only
   const [isEditable, setIsEditable] = useState(true);
   const [prevText, setPrevText] = useState(text); //It is important to locate todos with a certain text and then change them
@@ -42,8 +45,8 @@ const Todo = ({ done, text, attachedBoard }: TODO) => {
   }, [isEditable]);
 
   const toggler = () => {
-    const newVal = isChecked ? false : true;
-    setIsChecked(newVal);
+    const newVal = !isChecked;
+    //setIsChecked(newVal);
     updateTodoState(prevText, newVal);
   };
 
