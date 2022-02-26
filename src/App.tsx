@@ -1,4 +1,6 @@
-import AddTodoModal from "./components/AddTodoModal";
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/outline";
+import { useState } from "react";
+import AddBoardModal from "./components/AddBoardModal";
 import Backdrop from "./components/Backdrop";
 import ColorDot from "./components/ColorDot";
 import Header from "./components/Header";
@@ -8,30 +10,32 @@ import SmartTodosList from "./components/SmartTodosList";
 import { useStore } from "./components/store";
 
 function App() {
-  //TODO add Modals
-  //TODO set state using zustand
+
   //TODO Save Todos to local Storage
   //TODO Add Focus Mode
-  //TODO make a todo Daily Highlight
   //TODO Add a category
   //TODO Switch To a category and show its todos only
   //TODO add Board View
   //TODO Add Animations
+  //TODO make a todo deletable
 
   //TODO app is not responsive
 
+  const [isSideOpen, setIsSideOpen] = useState(false);
+  
   return (
     <>
+      <button onClick={() => setIsSideOpen(!isSideOpen)} className="block md:hidden absolute z-50 bottom-8 left-8 rounded-full bg-pclr-500 text-white shadow-lg shadow-pclr-200 p-3">{isSideOpen ? <ChevronLeftIcon className="w-5 h-5" /> : <ChevronRightIcon className="w-5 h-5" />}</button>
       <div className="App w-full h-full font-pf">
         <div className="w-full h-full flex">
-          <div className="w-[260px] hidden sm:block">
+          <div className={`w-[260px] transition-all duration-500 h-full absolute md:static md:block ${isSideOpen ? "left-0 top-0" : "-left-full"}`}>
             <Sidebar />
           </div>
-          <div className="flex-1 flex h-full flex-col">
+          <div className="flex-1 flex h-full w-full flex-col">
             <div className="p-4 h-[180px]">
               <Header />
             </div>
-            <div className="flex-1 py-4 overflow-hidden" >
+            <div className="flex-1 py-4 overflow-y-auto" >
               <ListContainer />
             </div>
           </div>

@@ -78,7 +78,11 @@ const Todo = ({ done, text }: TODO) => {
             ref={inputRef}
             onBlur={() => setIsEditable(false)}
             disabled={!isEditable}
-            className={`text-nclr-700 ${isChecked ? "line-through" : ""}`}
+            className={`text-nclr-700 ${isChecked ? "line-through" : ""} cursor-pointer`}
+            onClick={() => {
+              if(!isEditable) toggler();
+              console.log("asdsad");
+            }}
           />
         </div>
         <button className="w-fit text-nclr-700 block sm:hidden">

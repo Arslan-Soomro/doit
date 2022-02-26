@@ -1,3 +1,4 @@
+import { PlusIcon } from "@heroicons/react/outline";
 import ColorDot from "./ColorDot";
 import SmartTodosList from "./SmartTodosList";
 import { useStore } from "./store";
@@ -7,7 +8,7 @@ const ListContainer = () => {
 
   return (
     <>
-      <div className="w-full flex items-center px-6 justify-between mt-4">
+      <div className="w-full flex items-center px-6 justify-between">
         <h3 className="text-3xl font-black text-pclr-500">Todos</h3>
         <div className="flex items-center space-x-2 mx-4">
           <ColorDot color="gray" />
@@ -17,16 +18,16 @@ const ListContainer = () => {
       <div className="px-6">
         <hr className="my-2" />
       </div>
-      <div className="overflow-y-scroll px-6 pb-4">
+      <div className="px-6 pb-4 container">
         <SmartTodosList />
-        <div className="w-full relative flex items-center justify-end">
+
           <button
             onClick={addTodoHandler}
-            className="border rounded-lg p-1 px-3 text-sclr-500 border-sclr-500 hover:bg-sclr-500 hover:text-white active:bg-sclr-600"
+            className="flex justify-center border-2 border-dashed border-sclr-100 text-sclr-200 p-3 w-full rounded-lg"
           >
-            Add Todo
+            <PlusIcon className="w-6 h-6" />
           </button>
-        </div>
+        
       </div>
     </>
   );
