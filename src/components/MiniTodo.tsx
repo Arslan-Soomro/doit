@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { TODO } from "../utils/customTypes";
+import { useStore } from "./store";
 
 const MiniTodo = ({ text, done } : {text: string, done: boolean}) => {
 
     const [isDone, setIsDone] = useState(done);
+    const updateTodoState = useStore((state) => state.updateTodoState);
 
     const toggler = () => {
         setIsDone(!isDone);
+        updateTodoState(text, isDone);
     }
 
     return(

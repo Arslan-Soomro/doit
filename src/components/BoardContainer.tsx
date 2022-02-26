@@ -13,7 +13,7 @@ const BoardContainer = () => {
       <div className="px-6">
         <hr className="my-2" />
       </div>
-      <div className="px-6 pb-4 w-full flex flex-wrap items-start justify-evenly gap-5">
+      <div className="px-6 pt-2 pb-4 w-full flex flex-wrap items-start justify-evenly gap-5">
         {
           boards.map((item, ind) => {
             return <Board key={ind} name={item.name} color={item.color} />
