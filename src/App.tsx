@@ -2,6 +2,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/outline";
 import { useState } from "react";
 import AddBoardModal from "./components/AddBoardModal";
 import Backdrop from "./components/Backdrop";
+import BoardContainer from "./components/BoardContainer";
 import ColorDot from "./components/ColorDot";
 import Header from "./components/Header";
 import ListContainer from "./components/ListContainer";
@@ -13,11 +14,8 @@ function App() {
 
   //TODO Save Todos to local Storage
   //TODO Add Focus Mode
-  //TODO Add a category
-  //TODO Switch To a category and show its todos only
   //TODO add Board View
   //TODO Add Animations
-  //TODO make a todo deletable
 
   //TODO app is not responsive
 
@@ -36,7 +34,8 @@ function App() {
               <Header />
             </div>
             <div className="flex-1 py-4 overflow-y-auto" >
-              <ListContainer />
+              <BoardContainer />
+              {/* <ListContainer /> */}
             </div>
           </div>
         </div>

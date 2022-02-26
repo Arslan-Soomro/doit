@@ -1,5 +1,6 @@
 import TodosList from "./TodosList";
 import { useStore } from "./store";
+import { useEffect } from "react";
 
 const SmartTodosList = () => {
 

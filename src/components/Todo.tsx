@@ -14,27 +14,37 @@ import Tooltip from "./Tooltip";
 const Todo = ({ done, text, attachedBoard }: TODO) => {
   //done prop is used to set default state and as well as pass new state to ancestor
 
+  const updateTodoText = useStore((state) => state.updateTodoText);
+  const updateTodoState = useStore((state) => state.updateTodoState);
   const deleteTodoHandler = useStore((state) => state.deleteTodo);
   const updateHighlightHandler = useStore((state) => state.updateHighlight);
+  
 
   const [isChecked, setIsChecked] = useState(done ? true : false); //checked if todo is done otherwise unchecked
   const [isExpanded, setIsExpanded] = useState(false); //For mobile view only
   const [isEditable, setIsEditable] = useState(true);
+  const [prevText, setPrevText] = useState(text); //It is important to locate todos with a certain text and then change them
   const textRef = useRef<HTMLParagraphElement>(null);
-
-  //TODO Update state too.
-  //FIXME delete is not working right, fix it.
 
   useEffect(() => {
     if (isEditable) {
       if (textRef.current) textRef.current.focus();
+    }else if(textRef.current){
+      const currentInnerText = textRef.current.innerText;
+      
+      if(currentInnerText.trim().length <= 0){
+          deleteTodoHandler(prevText);
+      }else{
+        updateTodoText(prevText, currentInnerText);
+        setPrevText(currentInnerText);
+      }
     }
   }, [isEditable]);
 
   const toggler = () => {
     const newVal = isChecked ? false : true;
-    done = newVal;
     setIsChecked(newVal);
+    updateTodoState(prevText, newVal);
   };
 
   const iconsBar = (
@@ -44,11 +54,12 @@ const Todo = ({ done, text, attachedBoard }: TODO) => {
           <PencilIcon className="w-5 h-5 hover:text-pclr-500 active:text-pclr-700" />
         </Tooltip>
       </button>
+      {/* TODO Add focus mode
       <button>
         <Tooltip text="Focus">
           <EyeIcon className="w-5 h-5 hover:text-pclr-500 active:text-pclr-700" />
         </Tooltip>
-      </button>
+      </button> */}
       <button
         onClick={() => {
           if (textRef.current)
@@ -94,6 +105,7 @@ const Todo = ({ done, text, attachedBoard }: TODO) => {
               isChecked ? "line-through" : ""
             } cursor-pointer w-full break-all pr-2 focus-visible:outline-none`}
             contentEditable={isEditable}
+            suppressContentEditableWarning={true}
           >
             {text}
           </p>
