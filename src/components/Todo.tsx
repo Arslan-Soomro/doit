@@ -20,15 +20,14 @@ const Todo = ({ done, text, attachedBoard }: TODO) => {
   const [isChecked, setIsChecked] = useState(done ? true : false); //checked if todo is done otherwise unchecked
   const [isExpanded, setIsExpanded] = useState(false); //For mobile view only
   const [isEditable, setIsEditable] = useState(true);
-  const inputRef = useRef<HTMLInputElement>(null);
-
+  const textRef = useRef<HTMLParagraphElement>(null);
 
   //TODO Update state too.
   //FIXME delete is not working right, fix it.
 
   useEffect(() => {
     if (isEditable) {
-      if (inputRef.current) inputRef.current.focus();
+      if (textRef.current) textRef.current.focus();
     }
   }, [isEditable]);
 
@@ -50,12 +49,21 @@ const Todo = ({ done, text, attachedBoard }: TODO) => {
           <EyeIcon className="w-5 h-5 hover:text-pclr-500 active:text-pclr-700" />
         </Tooltip>
       </button>
-      <button onClick={() => {if(inputRef.current) updateHighlightHandler(inputRef.current.value) }}>
+      <button
+        onClick={() => {
+          if (textRef.current)
+            updateHighlightHandler(textRef.current.innerText);
+        }}
+      >
         <Tooltip text="Highlight">
           <LightBulbIcon className="w-5 h-5 hover:text-pclr-500 active:text-pclr-700" />
         </Tooltip>
       </button>
-      <button onClick={() => {if(inputRef.current) deleteTodoHandler(inputRef.current.value) }}>
+      <button
+        onClick={() => {
+          if (textRef.current) deleteTodoHandler(textRef.current.innerText);
+        }}
+      >
         <Tooltip text="Delete">
           <TrashIcon className="w-5 h-5 hover:text-red-500 active:text-red-700" />
         </Tooltip>
@@ -76,16 +84,19 @@ const Todo = ({ done, text, attachedBoard }: TODO) => {
           />
 
           {/* Text */}
-          <input
-            defaultValue={text}
-            ref={inputRef}
+          <p
             onBlur={() => setIsEditable(false)}
-            disabled={!isEditable}
-            className={`text-nclr-700 ${isChecked ? "line-through" : ""} cursor-pointer w-full`}
             onClick={() => {
-              if(!isEditable) toggler();
+              if (!isEditable) toggler();
             }}
-          />
+            ref={textRef}
+            className={`text-nclr-700 ${
+              isChecked ? "line-through" : ""
+            } cursor-pointer w-full break-all pr-2 focus-visible:outline-none`}
+            contentEditable={isEditable}
+          >
+            {text}
+          </p>
         </div>
         <button className="w-fit text-nclr-700 block sm:hidden">
           {isExpanded ? (
