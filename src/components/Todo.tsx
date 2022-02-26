@@ -11,7 +11,7 @@ import { TODO } from "../utils/customTypes";
 import { useStore } from "./store";
 import Tooltip from "./Tooltip";
 
-const Todo = ({ done, text }: TODO) => {
+const Todo = ({ done, text, attachedBoard }: TODO) => {
   //done prop is used to set default state and as well as pass new state to ancestor
 
   const deleteTodoHandler = useStore((state) => state.deleteTodo);
@@ -67,21 +67,23 @@ const Todo = ({ done, text }: TODO) => {
     <div className="p-4 w-full border rounded-lg my-4">
       <div className=" w-full flex justify-between items-center">
         <div className="cursor-pointer flex justify-start w-full items-center space-x-3">
+          {/* Checkbox */}
           <input
             className="w-5 h-5"
             type="checkbox"
             checked={isChecked}
             onChange={toggler}
           />
+
+          {/* Text */}
           <input
             defaultValue={text}
             ref={inputRef}
             onBlur={() => setIsEditable(false)}
             disabled={!isEditable}
-            className={`text-nclr-700 ${isChecked ? "line-through" : ""} cursor-pointer`}
+            className={`text-nclr-700 ${isChecked ? "line-through" : ""} cursor-pointer w-full`}
             onClick={() => {
               if(!isEditable) toggler();
-              console.log("asdsad");
             }}
           />
         </div>

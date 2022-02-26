@@ -5,14 +5,15 @@ import { useStore } from "./store";
 
 const ListContainer = () => {
   const addTodoHandler = useStore((state) => state.addTodo);
+  const currentBoard = useStore((state) => state.currentBoard);
 
   return (
     <>
       <div className="w-full flex items-center px-6 justify-between">
         <h3 className="text-3xl font-black text-pclr-500">Todos</h3>
         <div className="flex items-center space-x-2 mx-4">
-          <ColorDot color="gray" />
-          <p className="text-nclr-900">All</p>
+          <ColorDot color={currentBoard.color} />
+          <p className="text-nclr-900">{currentBoard.name}</p>
         </div>
       </div>
       <div className="px-6">

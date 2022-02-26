@@ -8,7 +8,7 @@ interface props{
 const TodosList = ({ todos } : props) => {
   return (
     <div className="w-full overflow-x-hidden container">
-        {todos.map((item, ind) =>  (<Todo key={ind} text={item.text} done={item.done} />))}
+        {todos.map((item, ind) =>  (<Todo key={ind} text={item.text} done={item.done} attachedBoard={item.attachedBoard} />))}
     </div>
   );
 };
