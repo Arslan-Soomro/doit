@@ -13,10 +13,10 @@ import { useStore } from "./components/store";
 function App() {
   //TODO Save Todos to local Storage
   //TODO Add Focus Mode
-  //TODO add Board View
   //TODO Add Animations
 
   //TODO app is not responsive
+  //TODO cleanup dummy data
 
   const [isSideOpen, setIsSideOpen] = useState(false);
   const [isBoardOpen, setIsBoardOpen] = useState(true);
@@ -43,7 +43,7 @@ function App() {
             <Sidebar setBoardOpen={setIsBoardOpen} />
           </div>
           <div className="flex-1 flex h-full w-full flex-col">
-            <div className="p-4 h-[180px]">
+            <div className="p-4 h-[150px] sm:h-[180px]">
               <Header />
             </div>
             <div className="flex-1 py-4 overflow-y-auto">

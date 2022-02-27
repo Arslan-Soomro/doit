@@ -104,7 +104,7 @@ const Todo = ({ done, text, attachedBoard }: TODO) => {
               if (!isEditable) toggler();
             }}
             ref={textRef}
-            className={`text-nclr-700 ${
+            className={`text-sm sm:text-base text-nclr-700 ${
               isChecked ? "line-through" : ""
             } cursor-pointer w-full break-all pr-2 focus-visible:outline-none`}
             contentEditable={isEditable}

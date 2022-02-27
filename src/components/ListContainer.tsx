@@ -10,10 +10,10 @@ const ListContainer = () => {
   return (
     <>
       <div className="w-full flex items-center px-6 justify-between">
-        <h3 className="text-3xl font-black text-pclr-500">Todos</h3>
+        <h3 className="text-2xl sm:text-3xl font-black text-pclr-500">Todos</h3>
         <div className="flex items-center space-x-2 mx-4">
           <ColorDot color={currentBoard.color} />
-          <p className="text-nclr-900">{currentBoard.name}</p>
+          <p className="text-nclr-900 text-sm sm:text-base">{currentBoard.name}</p>
         </div>
       </div>
       <div className="px-6">
@@ -21,7 +21,6 @@ const ListContainer = () => {
       </div>
       <div className="px-6 pb-4 container">
         <SmartTodosList />
-
           <button
             onClick={addTodoHandler}
             className="flex justify-center border-2 border-dashed border-sclr-100 text-sclr-200 p-3 w-full rounded-lg"

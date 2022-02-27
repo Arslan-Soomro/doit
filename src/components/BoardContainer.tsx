@@ -8,7 +8,7 @@ const BoardContainer = () => {
   return (
     <div className="w-full h-full">
       <div className="w-full flex items-center px-6 justify-between">
-        <h3 className="text-3xl font-black text-pclr-500">Boards</h3>
+        <h3 className="text-2xl sm:text-3xl font-black text-pclr-500">Boards</h3>
       </div>
       <div className="px-6">
         <hr className="my-2" />

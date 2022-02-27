@@ -13,15 +13,15 @@ const Board = ({ name, color }: props) => {
   );
 
   return (
-    <div className="border rounded-lg w-[250px] h-[200px] overflow-hidden">
+    <div className="border rounded-lg w-[200px] h-[150px] sm:w-[250px] sm:h-[200px] overflow-hidden">
       <div
-        className="border-b px-4 py-2 text-white w-full"
+        className="border-b text-sm sm:text-base px-2 sm:px-4 py-2 text-white w-full"
         style={{ backgroundColor: color }}
       >
         {name}
       </div>
       {todos.length > 0 ?
-      <div className="text-sm w-full h-full overflow-y-auto">
+      <div className="w-full h-full overflow-y-auto">
         {todos.map((item, ind) => {
           return <MiniTodo key={ind} text={item.text} done={item.done} />;
         })}

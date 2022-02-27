@@ -23,7 +23,7 @@ const MiniTodo = ({ text, done } : {text: string, done: boolean}) => {
 
     return(
         <button onClick={toggler} className={`p-2 border-b transition-colors w-full text-left ${isDone ? "bg-green-100 hover:bg-green-200" : "bg-white hover:bg-nclr-100"}`}>
-            <p className="text-sm w-full text-left">{text}</p>
+            <p className="text-xs sm:text-sm w-full text-left">{text}</p>
         </button>
     )
 }
