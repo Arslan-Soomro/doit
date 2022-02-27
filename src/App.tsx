@@ -1,5 +1,5 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/outline";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddBoardModal from "./components/AddBoardModal";
 import Backdrop from "./components/Backdrop";
 import BoardContainer from "./components/BoardContainer";
@@ -9,6 +9,7 @@ import ListContainer from "./components/ListContainer";
 import Sidebar from "./components/Sidebar";
 import SmartTodosList from "./components/SmartTodosList";
 import { useStore } from "./components/store";
+import useStorage from "./components/useStorage";
 
 function App() {
   //TODO Save Todos to local Storage
@@ -18,8 +19,44 @@ function App() {
   //TODO app is not responsive
   //TODO cleanup dummy data
 
+  const todos = useStore((state) => state.todos);
+  const boards = useStore((state) => state.boards);
+  const setTodos = useStore((state) => state.setTodos);
+  const setBoards = useStore((state) => state.setBoards);
+
   const [isSideOpen, setIsSideOpen] = useState(false);
   const [isBoardOpen, setIsBoardOpen] = useState(true);
+
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
+
+  const initData = (resData: string | null) => {
+    const loadedData = resData != null ? JSON.parse(resData) : null;
+
+    if (
+      loadedData != null &&
+      typeof loadedData === "object" &&
+      loadedData.todos &&
+      loadedData.boards
+    ) {
+      setBoards(loadedData.boards);
+      setTodos(loadedData.todos);
+    }
+
+    setIsDataLoaded(true);
+  };
+
+  const [storage, setStorage] = useStorage("APP_DATA", initData);
+
+  useEffect(() => {
+    if (isDataLoaded) {
+      setStorage(
+        JSON.stringify({
+          todos,
+          boards,
+        })
+      );
+    }
+  }, [todos, boards]);
 
   return (
     <>

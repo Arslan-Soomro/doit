@@ -8,39 +8,16 @@ const initialBoard = {
 };
 
 const defaultTodo: TODO = {
-  text: 'I want to ',
+  text: 'Do ',
   done: false,
   attachedBoard: initialBoard, //change this to current board when adding it
 };
 
 export const useStore = create<STORE>((set, get) => ({
   todos: [
-    {
-      text: "Do your laundry",
-      done: false,
-      attachedBoard: initialBoard
-    },
-    {
-      text: "Do your homework",
-      done: false,
-      attachedBoard: initialBoard
-    },
-    {
-      text: "Do your Job",
-      done: false,
-      attachedBoard: initialBoard
-    },
   ],
   boards: [
     initialBoard,
-    {
-      name: 'Study',
-      color: 'green',
-    },
-    {
-      name: 'Work',
-      color: 'purple',
-    }
   ],
 
   highlight: "set a daily highlight",
@@ -93,6 +70,15 @@ export const useStore = create<STORE>((set, get) => ({
       todos: state.todos.filter((item) => item.attachedBoard.name != name),
       currentBoard: state.boards[0],
     }));
+  },
 
+  setTodos: (newTodos) => {
+    set(() => ({todos: newTodos}));
+    console.log('Data Updated');
+  },
+
+  setBoards: (newBoards) => {
+    set(() => ({boards: newBoards}));
+    console.log('Data Updated');
   }
 }));

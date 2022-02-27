@@ -12,7 +12,9 @@ export type TODO = {
 
 export type STORE = {
     todos: TODO[];
+    setTodos: (newTodos: TODO[]) => void;
     boards: BOARD[];
+    setBoards: (newBoards: BOARD[]) => void;
     highlight: string;
     currentBoard: BOARD;
     switchBoard: (toBoard: BOARD) => void;
