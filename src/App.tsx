@@ -21,8 +21,10 @@ function App() {
 
   const todos = useStore((state) => state.todos);
   const boards = useStore((state) => state.boards);
+  const highlight = useStore((state) => state.highlight);
   const setTodos = useStore((state) => state.setTodos);
   const setBoards = useStore((state) => state.setBoards);
+  const updateHighlight = useStore((state) => state.updateHighlight);
 
   const [isSideOpen, setIsSideOpen] = useState(false);
   const [isBoardOpen, setIsBoardOpen] = useState(true);
@@ -40,6 +42,7 @@ function App() {
     ) {
       setBoards(loadedData.boards);
       setTodos(loadedData.todos);
+      updateHighlight(loadedData.highlight);
     }
 
     setIsDataLoaded(true);
@@ -53,10 +56,11 @@ function App() {
         JSON.stringify({
           todos,
           boards,
+          highlight
         })
       );
     }
-  }, [todos, boards]);
+  }, [todos, boards, highlight]);
 
   return (
     <>
