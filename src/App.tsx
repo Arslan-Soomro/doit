@@ -42,7 +42,7 @@ function App() {
     ) {
       setBoards(loadedData.boards);
       setTodos(loadedData.todos);
-      updateHighlight(loadedData.highlight);
+      if(highlight != null && highlight.length > 0) updateHighlight(loadedData.highlight); //To prevent loading empty highlights
     }
 
     setIsDataLoaded(true);
