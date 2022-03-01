@@ -12,12 +12,8 @@ import { useStore } from "./components/store";
 import useStorage from "./components/useStorage";
 
 function App() {
-  //TODO Save Todos to local Storage
   //TODO Add Focus Mode
   //TODO Add Animations
-
-  //TODO app is not responsive
-  //TODO cleanup dummy data
 
   const todos = useStore((state) => state.todos);
   const boards = useStore((state) => state.boards);
